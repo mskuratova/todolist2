@@ -17,8 +17,8 @@ export function App() {
     const todolistId2 = v1();
 
     const [todoList, setTodolist] = useState<Array<TodolistType>>([
-        {id: v1(), title: "What to learn", filter: "all"},
-        {id: v1(), title: "What to buy", filter: "all"}
+        {id:todolistId1, title: "What to learn", filter: "all"},
+        {id:todolistId2, title: "What to buy", filter: "all"}
     ])
     const [tasks, setTasks] = useState({
         [todolistId1]: [
@@ -67,7 +67,6 @@ export function App() {
     }
 
     function getTasksForTodoList(todoList: TodolistType) {
-
         switch (todoList.filter) {
             case "active":
                 console.log('active',tasks[todoList.id])
@@ -77,6 +76,8 @@ export function App() {
                 return tasks[todoList.id].filter(t => t.isDone)
             default:
                 console.log('all',tasks[todoList.id])
+                let rr  = tasks
+                debugger
                 return tasks[todoList.id]
         }
     }
