@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import './App.css';
 import Todolist, {TaskType} from "./Todolist";
 import {v1} from "uuid";
+import AddItemForm from "./AddItemForm";
 
 export type FilterValuesType = "all" | "active" | "completed";
 type TodolistType = {
@@ -61,9 +62,24 @@ export function App() {
 
         }
     }
+    function changeTaskTitle(taskID: string, newTitle: string, todolistId: string) {
+      setTasks({...tasks, [todolistId]:tasks[todolistId].map(t=>t.id ===taskID ? {...t, title:newTitle} :t)
+      })
+
+    }
 
     function changeFilter(value: FilterValuesType, todolistID: string) {
         setTodolist(todoList.map(tl => tl.id === todolistID ? {...tl, filter: value} : tl))
+    }
+    function changeTodoListTitle(title: string, todolistID: string) {
+        setTodolist(todoList.map(tl => tl.id === todolistID ? {...tl, title} : tl))
+    }
+
+    function addTodoList(title:string) {
+        const newTodoListID = v1()
+        const newTodoList: TodolistType ={id: newTodoListID, title, filter: "all"}
+        setTodolist([...todoList,newTodoList])
+        setTasks({...tasks,[newTodoListID]:[]})
     }
 
     function getTasksForTodoList(todoList: TodolistType) {
@@ -95,6 +111,8 @@ export function App() {
                              addTask={addTask}
                              changeTaskStatus={changeTaskStatus}
                              removeTodolist={removeTodolist}
+                             changeTaskTitle={changeTaskTitle}
+                             changeTodoListTitle={changeTodoListTitle}
 
 
             />
@@ -104,6 +122,7 @@ export function App() {
 
     return (
         <div className="App">
+            <AddItemForm addItem={addTodoList} />
             {todoListComponents}
         </div>
     );
