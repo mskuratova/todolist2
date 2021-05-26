@@ -1,4 +1,10 @@
-import {ActionUnionType, AddTodoListAC, RemoveTodoListAC, todoListReducer} from "./todolist-reducer";
+import {
+    ActionUnionType,
+    AddTodoListAC, ChangeTodoListFilterAC,
+    ChangeTodoListTitleAC,
+    RemoveTodoListAC,
+    todoListReducer
+} from "./todolist-reducer";
 import {v1} from 'uuid';
 import {FilterValuesType, TodolistType} from '../App';
 
@@ -43,11 +49,7 @@ test('correct todolist should change its name', () => {
         {id: todolistId2, title: "What to buy", filter: "all"}
     ]
 
-    const action: ActionUnionType = {
-        type: 'CHANGE-TODOLIST-TITLE',
-        todoListID: todolistId2,
-        title: newTodolistTitle
-    };
+    const action: ActionUnionType = ChangeTodoListTitleAC(todolistId2, newTodolistTitle);
 
     const endState = todoListReducer(startState, action);
 
@@ -65,11 +67,8 @@ test('correct filter of todolist should be changed', () => {
         {id: todolistId2, title: "What to buy", filter: "all"}
     ]
 
-    const action: ActionUnionType= {
-        type: 'CHANGE-TODOLIST-FILTER',
-        todoListID: todolistId2,
-        filter: newFilter
-    };
+    const action: ActionUnionType= ChangeTodoListFilterAC (todolistId2, newFilter)
+    ;
 
     const endState = todoListReducer(startState, action);
 

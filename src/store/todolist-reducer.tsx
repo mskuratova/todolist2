@@ -48,6 +48,9 @@ export const RemoveTodoListAC = (todoListID:string): RemoveTodoListAT => {
 export const AddTodoListAC = (newTodolistTitle:string): AddTodoListAT => {
     return {type: "ADD-TODOLIST", title: newTodolistTitle}
 }
-// export const ChangeTodoListTitleAC = (newTodolistTitle:string): ChangeTodoListTitleAT => {
-//     return {type: "CHANGE-TODOLIST-TITLE", title: newTodolistTitle, todoListID: todoListID}
-// }
+ export const ChangeTodoListTitleAC = (newTodolistTitle:string, todoListID:string): ChangeTodoListTitleAT => {
+     return {type: "CHANGE-TODOLIST-TITLE", title: newTodolistTitle, todoListID: todoListID}
+ }
+export const ChangeTodoListFilterAC = ( todoListID:string, filter: FilterValuesType): ChangeTodoListFilterAT => {
+    return {type:"CHANGE-TODOLIST-FILTER" ,  todoListID: todoListID, filter: filter}
+}
