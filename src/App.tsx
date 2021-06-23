@@ -12,6 +12,9 @@ export type TodolistType = {
     title: string
     filter: FilterValuesType
 }
+export type TasksStateType ={
+    [key:string]: Array<TaskType>
+}
 
 
 export function App() {
@@ -90,7 +93,7 @@ export function App() {
                 console.log('active',tasks[todoList.id])
                 return tasks[todoList.id].filter(t => !t.isDone)
             case "completed":
-                console.log('complited',tasks[todoList.id])
+                console.log('completed',tasks[todoList.id])
                 return tasks[todoList.id].filter(t => t.isDone)
             default:
                 console.log('all',tasks[todoList.id])
