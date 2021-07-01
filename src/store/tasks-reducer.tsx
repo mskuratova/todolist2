@@ -28,8 +28,11 @@ type ChangeTaskTitleAC ={
 
 export type ActionUnionType = RemoveTaskAT | AddTaskAC | ChangeTaskStatusAC |ChangeTaskTitleAC | AddTodoListAT |RemoveTodoListAT;
 
+const initialState: TasksStateType = {}
+
+
 export const tasksReducer =
-    (state: TasksStateType, action: ActionUnionType): TasksStateType => {
+    (state: TasksStateType = initialState, action: ActionUnionType): TasksStateType => {
     switch (action.type){
         case "REMOVE-TASK":
             let todolistTasks = state[action.todolistID];
