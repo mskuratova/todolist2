@@ -1,7 +1,8 @@
 import {TasksStateType} from "../App";
 import {v1} from "uuid";
-import {TaskType} from "../Todolist";
 import {AddTodoListAT, RemoveTodoListAT} from "./todolist-reducer";
+import {TaskType} from "../Todolist";
+
 
 type RemoveTaskAT = {
     type: "REMOVE-TASK"
